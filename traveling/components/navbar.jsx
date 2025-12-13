@@ -34,6 +34,15 @@ function Navbar() {
 
   const productCount = products.reduce((acc, item) => acc + item.quantity, 0);
 
+  // FUNCION DETERMINAR ABRIR DROPDOWN O LOGIN
+  const handleAvatarClick = (e) => {
+    if (user) {
+      toggleDropdown();
+    } else {
+      openLogin(e);
+    }
+  };
+
   // GENERAR AVATAR
   const generateAvatar = useCallback(async () => {
     if (!user || !user.fotousuario) return;
@@ -68,6 +77,8 @@ function Navbar() {
 
   // ABRIR MODAL LOGIN
   const openLogin = (e) => {
+    if(user){  }
+
     e.preventDefault();
     setModalContent("login");
     setIsModalOpen(true);
@@ -147,7 +158,7 @@ function Navbar() {
                     hover:cursor-pointer
                     ${user && 'hover:bg-white hover:border hover:border-gray-400'} 
                   `}
-                  onClick={openLogin}
+                  onClick={handleAvatarClick}
                 />
 
                 {/* Datos del usuario */}
