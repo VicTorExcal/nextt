@@ -58,10 +58,13 @@ const Login = ({ switchToSignUp }) => {
 
         if (rol && estado) {
           // Redireccionamiento según rol
+          console.log("Entro a condicion de rol")
           if (rol === "admin" && estado === "activo") {
+            alert("Entro rol admin")
             handleLoginSuccess(data.user);
-            window.location.reload("/admin");
+            window.location.replace("./admin");
           } else if (rol === "cliente" && estado === "activo") {
+            alert("Entro a rol client")
             handleLoginSuccess(data.user);
             window.location.reload("/cliente");
           }
