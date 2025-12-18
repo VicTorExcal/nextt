@@ -6,6 +6,7 @@ const allowedTables = {
   clientes: 'idcliente',
   productos: 'idproducto'
 };
+
 function isValidTableAndColumn(table, column) {
   return allowedTables[table] && allowedTables[table] === column;
 }

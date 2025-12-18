@@ -1,18 +1,18 @@
-import { AuthProvider } from '../../context/authContext'
-
+"use client";
+import { useContext } from "react";
+import { AuthContext } from '../../context/authContext'
 
 export default function adminLayout({children}){
+    const { user, logout } = useContext(AuthContext);
     return(
         <>
-        <AuthProvider>
-            <div className='min-h-screen xl-flex'>
+            <div className='min-h-screen flex '>
                 <aside className='
-                    fixed flex-col 
                     top-0 px-5 left-0 
                     bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900
                     border-r border-gray-200
                     transition-all duration-300 ease-in-out z-50 
-                    h-full w-[290px] 
+                    h-full w-90  
                 '>
                     <div className='py-8'>
                         <a href='/' className='w-full'>
@@ -49,7 +49,7 @@ export default function adminLayout({children}){
                                             ></path>
                                         </svg>
                                     </button>
-                                    <div class="overflow-hidden transition-all duration-300 h-md ">
+                                    <div className="overflow-hidden transition-all duration-300 h-md ">
                                         <ul className='mt-2 space-y-1 ml-9'>
                                             <li>
                                                 <a href='/'>
@@ -64,16 +64,29 @@ export default function adminLayout({children}){
                                         </ul>
                                     </div>
                                 </li>
-                                
+                                <li>
+                                    <button 
+                                        className='text-white text-md bg-red-600 w-full p-2 rounded-xs hover:cursor-pointer hover:bg-red-700    
+                                        '
+                                        onClick={logout}
+                                    >
+                                        Salir
+                                    </button>
+                                </li>
                             </ul>
                         </nav>
-                    </div>
-                    <div className='flex flex-col overflow-auto duratoin-300 ease-linear no-scrollbar'>
                     </div> 
                 </aside>
+                <div className='w-full top-0 right-0 py-5 duratoin-300 ease-linear no-scrollbar'>
+                    <div className="bg-amber-400" id="subNav">
+                        <span>Direccionamiento</span>
+                    </div>
+                    <div className="relative">
+                        {children}
+                    </div>
+                </div>
+                
             </div>
-            {children}
-        </AuthProvider>
         </>
     )
 }

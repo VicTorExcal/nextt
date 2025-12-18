@@ -53,8 +53,8 @@ const Login = ({ switchToSignUp }) => {
         setError(apiError);
       } else {
         // Extraer rol del usuario
-        const rol = data.user?.rolusuario;
-        const estado = data.user?.estadousuario
+        const rol = data.user?.rol_usuario;
+        const estado = data.user?.estado_usuario
 
         if (rol && estado) {
           // Redireccionamiento según rol

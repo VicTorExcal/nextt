@@ -45,12 +45,12 @@ function Navbar() {
 
   // GENERAR AVATAR
   const generateAvatar = useCallback(async () => {
-    if (!user || !user.fotousuario) return;
+    if (!user || !user.avatar_usuario) return;
 
     setIsLoading(true);
 
     try {
-      const splitAvatar = user.fotousuario.split(" ");
+      const splitAvatar = user.avatar_usuario.split(" ");
 
       if (splitAvatar.length > 1) {
         const InitialName = splitAvatar[0];
@@ -58,7 +58,7 @@ function Navbar() {
         const url = `https://ui-avatars.com/api/?name=${InitialName}&background=${Background}`;
         setAvatarUrl(url);
       } else {
-        setAvatarUrl(user.fotousuario);
+        setAvatarUrl(user.avatar_usuario);
       }
     } catch (err) {
       console.error("Error inesperado:", err);
@@ -165,8 +165,8 @@ function Navbar() {
                 <div className="px-4 text-gray-400 md:hidden">
                   {user ? (
                     <>
-                      <p className="font-bold">{user.nombreusuario}</p>
-                      <span className="text-sm">{user.telusuario}</span>
+                      <p className="font-bold">{user.nombre_usuario}</p>
+                      <span className="text-sm">{user.telefono_usuario}</span>
                     </>
                   ) : (
                     <p className="font-bold py-3">Invitado</p>

@@ -1,0 +1,65 @@
+Sitio web traveling enfocado en la venta de productos turísticos
+
+Contiene
+	- Roles admin/cliente
+	- pagina publica de inicio
+	- Interfaz del panel de control
+	- inicio de sesión
+	- registro de usuarios
+	- registro de productos
+	- búsqueda de productos
+	- visualización detalle de productos
+	- compra de productos
+	- estado de compra
+	- pagina de ayuda
+
+Descripción
+	determinar a que interfaz pertenece cada rol
+	Pagina publica de inicio
+		- En el contenido debe contener aspectos de productos mas relevantes, las tarjetas deben accionar un 			modulo detallado de la tarjeta seleccionada.
+		- El modulo de descripción de la tarjeta debe contener los datos mas importantes, y un botón que permita 		agregar al carrito de compras. por fuera del contenido principal (opcional) muestre tarjetas de productos 		similares.
+		- La opción de productos del navBar debe redirigir a un modulo con todas las categorías disponibles 			(Ofertas, últimos cupos, ulimas fechas, mas visitados, los de mejor experiencia de acuerdo a las reseñas, 		etc)
+		- La opción de ofertas del navBar redirige a un modulo con todo lo relacionado con productos en oferta, 		desde nuevos, hasta productos cortos a Desarrollarse
+		La opción de ayuda del navBar redirige a una pagina exclusivamente para todo lo relacionado con ayuda al 		usuario, pqrs, manejo de pqrs, soporte, etc.
+		- La opción de carrito y gestión de usuario solo estara disponible una vez el cliente inicie sesión
+		- La opción de inicio de sesión debe contener campos para las credenciales de acceso, reestablecer 			contraseña, registrar usuario.
+		- La opción de registrarse debe contener los campos de datos básicos del usuario, adicional tener conexión 		con el inicio de sesión.
+	
+	Panel de control de administrador
+		- debe mostrar la barra de navegación, la barra de dirección, logo, perfil de admin, panel de contenido
+		- en la barra de navegación principalmente debe tener opciones de registro, lista, edición y eliminación 		de productos, lista de clientes ignorando datos de compra y credenciales, estado de clientes, facturación 		e historial de facturación, convenios, etc.
+	
+	Registro de productos
+		- debe contener los datos básicos de un producto como nombre, descripción, precio, imágenes ilustrativas, 		fecha de creación, etc.
+	
+	visualización de detalle del producto
+		- al seleccionar cualquier tarjeta, esta muestre el detalle de la seleccionada, detalles como el nombre, 		ubicación, la descripción, precio, cantidad disponible, imágenes ilustrativas disponibles, y como relleno 		de modulo, muestra de tarjetas similares al lugar, al precio, a la oferta, entre otros. 
+	
+	Búsqueda de productos
+		- debe permitir la busqueda de los productos en general, sea que encuentre resultados o no, al presionar 		Enter, redirija al apartado de resultados y muestre mensaje de no encontrado o las tarjetas de los 			productos encontrados con la función respeciva de tarjeta.
+	
+	Carrito de compras
+		- Para el carrito de compras se debe mostrar una imagen ilustrativa del producto añadido, seguido del 			nombre, el precio final del producto, debe permitir modificar la cantidad a mas de 1, debe permitir 			eliminar el producto añadido solicitanto confirmación del usuario
+		- (Opcional) al haber productos añadidos, se habilite una opción de vaciar carrito, esto para eliminar 			todos los productos con un solo click y una sola confirmación.
+		- Importante: debe tener el total del precio de los productos añadidos y un botón de Comprar
+
+	Compra de productos
+		- en el papartado de compra, debe tener opciones de pago, ya sea por tarjeta, convenio o efectivo.
+		- si es por tarjeta, solicitar los datos de la misma.
+		- si es por convenio, generar referencia, numero de convenio, valor a pagar, entre otros.
+		- si es por banco, escoger el banco y continuar el procedimiento de pago una vez confirme en siguiente.
+		- si es por pse, escoger el tipo y continuar con el procedimiento respectivo.
+		- al presionar en siguiente, efectuar o generar el recibo de pago de acuerdo a la opción de pago escogida 		por el cliente
+		- generado el recibo de pago, enviar recibo al correo del usuario y pasar la compra estado pendiente hasta 		confirmar la cancelación del valor total de los productos a comprar.
+		- Confirmado el pago proceder a enviar al correo y agregar la notificación de pago procesado y seguimiento 		del producto (opcional) si aplica, adicional agregar la compra establecida a la lista de compras del 			cliente con su respectivo estado e información de la misma.
+		- Terminada la ejecución, redirigir a la pagina de inicio. 
+
+	Perfil de usuario
+		- debe contener información del usuario, asi como opciones para acceder a las compras realizadas, 			notificaciones, opciones para modificar sus datos personales como su foto, numero de teléfono, correo 			electrónico, tipos y números de cuentas, entre otros.
+	Ayuda
+		- en este modulo se integra lo relacionado con atención al usuario, soporte, guía, manual de usuario, 			PQRS, entre otros
+		- ciertas funciónes de interacción se le asigna un código de referencia para efectuar los distintos 			canales a los cuales el usuario acceda como PQRS, soporte, atención al usuario.
+	
+	
+	
+	

@@ -39,7 +39,7 @@ export default function SearchAPI() {
         }
 
         const filtered = data.filter((producto) =>
-          producto.nombreproducto.toLowerCase().includes(query.toLowerCase())
+          producto.nombre_producto.toLowerCase().includes(query.toLowerCase())
         );
 
         setSuggestions(filtered);
@@ -105,11 +105,11 @@ export default function SearchAPI() {
           {suggestions.length > 0 ? (
             suggestions.map((item) => (
               <li
-                key={item.idproducto}
-                onClick={() => handleSelect(item.nombreproducto)}
+                key={item.id_producto}
+                onClick={() => handleSelect(item.nombre_producto)}
                 className="px-4 py-2 cursor-pointer hover:bg-sky-50"
               >
-                {item.nombreproducto}
+                {item.nombre_producto}
               </li>
             ))
           ) : (

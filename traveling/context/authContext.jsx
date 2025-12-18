@@ -32,7 +32,7 @@ export function AuthProvider({ children }) {
     setToken(null);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    window.location.reload("/"); // Redirige al home
+    window.location.replace("/client"); // Redirige al home
   };
 
   return (

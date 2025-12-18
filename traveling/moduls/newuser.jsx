@@ -101,19 +101,19 @@ function NewUser({ switchToLogin }) {
     if (!avatarValue) return;
 
     const datos = {
-      idusuario: id,
-      tidusuario: selectTipoId,
-      nombreusuario: nombre,
-      apellidousuario: apellido,
-      fnusuario: fnacido,
-      genusuario: selectedRadio,
-      telusuario: telefono,
-      correousuario: correo,
-      contrasenausuario: contrasena,
-      fcusuario: fcreacion,
-      fotousuario: avatarValue,
-      rolusuario: "cliente",
-      estadousuario: "activo",
+      id_usuario: id,
+      tipo_id_usuario: selectTipoId,
+      nombre_usuario: nombre,
+      apellido_usuario: apellido,
+      fecha_nacimiento_usuario: fnacido,
+      genero_usuario: selectedRadio,
+      telefono_usuario: telefono,
+      correo_usuario: correo,
+      contrasena_usuario: contrasena,
+      fecha_creacion_usuario: fcreacion,
+      avatar_usuario: avatarValue,
+      rol_usuario: "cliente",
+      estado_usuario: "activo",
     };
 
     try {
