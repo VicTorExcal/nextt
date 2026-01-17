@@ -77,7 +77,7 @@ export default function adminLayout({children}){
                         </nav>
                     </div> 
                 </aside>
-                <div className='w-full top-0 right-0 py-5 duratoin-300 ease-linear no-scrollbar'>
+                <div className='w-full top-0 right-0 py-5 duration-300 ease-linear no-scrollbar'>
                     <div className="bg-amber-400" id="subNav">
                         <span>Direccionamiento</span>
                     </div>
@@ -85,7 +85,6 @@ export default function adminLayout({children}){
                         {children}
                     </div>
                 </div>
-                
             </div>
         </>
     )

@@ -7,6 +7,7 @@ import Inputbutton from "../components/inputbutton";
 import { AuthContext } from "../context/authContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
+import { navigateTo } from "../utils/navigation";
 
 function generateRandomToken() {
   const array = new Uint8Array(32);
@@ -31,7 +32,6 @@ const Login = ({ switchToSignUp }) => {
   };
 
   const handleSubmit = async (e) => {
-    console.log("clickeado")
     e.preventDefault();
     setLoading(true);
     setError(null);
@@ -58,25 +58,23 @@ const Login = ({ switchToSignUp }) => {
 
         if (rol && estado) {
           // Redireccionamiento según rol
-          console.log("Entro a condicion de rol")
           if (rol === "admin" && estado === "activo") {
-            alert("Entro rol admin")
             handleLoginSuccess(data.user);
-            window.location.replace("./admin");
-          } else if (rol === "cliente" && estado === "activo") {
-            alert("Entro a rol client")
+            console.log("redireccionando a adminInteface")
+            console.log("Datos encontrados", localStorage.getItem("user"))
+            navigateTo("./admin");
+          } else if (rol === "cliente" && estado === "activo") {  
             handleLoginSuccess(data.user);
-            window.location.reload("/cliente");
+            navigateTo("/cliente");
           }
           else {
             alert("Lo sentimos. El usuario se encuentra bloqueado. Consulte con su administrador")
-            window.location.reload("/cliente");
+            navigateTo("/cliente");
           }
         }
       }
     } catch (err) {
       setError("Error inesperado al iniciar sesión");
-      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -120,8 +118,7 @@ const Login = ({ switchToSignUp }) => {
         <Link
           href="#"
           className="text-sm relative left-2 top-2 hover:text-blue-700 cursor-pointer"
-        >
-          Olvidó su contraseña?
+        > Olvidó su contraseña?
         </Link>
       </div>
 
@@ -137,8 +134,7 @@ const Login = ({ switchToSignUp }) => {
           type="button"
           className="text-blue-600 hover:underline p-2 cursor-pointer"
           onClick={switchToSignUp}
-        >
-          Quiero Registrarme
+        > Quiero Registrarme
         </button>
       </div>
 
@@ -146,5 +142,4 @@ const Login = ({ switchToSignUp }) => {
     </form>
   );
 };
-
 export default Login;

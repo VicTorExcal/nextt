@@ -8,7 +8,7 @@ export async function apiRequest(dir, options = {}) {
     method: options.method || "GET",
     body: options.body || null,
     headers: isFormData
-      ? {} // ⬅️ CLAVE: No agregar headers cuando hay FormData
+      ? {} //CLAVE: No agregar headers cuando hay FormData
       : {
           "Content-Type": "application/json",
           ...(options.headers || {}),
@@ -22,7 +22,6 @@ export async function apiRequest(dir, options = {}) {
 
     try {
       data = await response.json();
-      console.log("dataFetch: ", JSON.stringify(data))
     } catch {
       data = null;
     }
@@ -30,7 +29,6 @@ export async function apiRequest(dir, options = {}) {
     if (!response.ok) {
       throw new Error(data?.message || `Error en la solicitud: ${response.status}`);
     }
-
     return { data, error: null };
 
   } catch (error) { 

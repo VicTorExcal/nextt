@@ -12,11 +12,11 @@ app.use(bodyParser.json());
 app.use((err, req, res, next) => {
   if (err instanceof Error) {
     // Si es un objeto Error, muestra el mensaje y el stack trace
-    console.error("🔥 MULTER/CLOUDINARY ERROR:", err.message);
+    console.error("MULTER/CLOUDINARY ERROR:", err.message);
     console.error("STACK TRACE:", err.stack);
   } else {
     // Si no es un objeto Error, usa console.dir para ver la estructura
-    console.error("🔥 MULTER/CLOUDINARY ERROR:", err);
+    console.error("MULTER/CLOUDINARY ERROR:", err);
     console.dir(err, { depth: null }); // Profundiza al máximo en el objeto
   }
 

@@ -2,9 +2,9 @@ const db = require('../db/db');
 
 // Listas permitidas
 const allowedTables = {
-  usuarios: 'idusuario',
-  clientes: 'idcliente',
-  productos: 'idproducto'
+  usuarios: 'id_usuario',
+  productos: 'id_producto',
+  categorias: 'id_categoria'
 };
 
 function isValidTableAndColumn(table, column) {

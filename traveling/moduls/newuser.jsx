@@ -157,7 +157,8 @@ function NewUser({ switchToLogin }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="gap-x-1 w-4xl p-2 m-auto border border-gray-700/30 shadow-xl/40 shadow-blue-600 bg-white rounded justify-center"
+      className="gap-x-1 w-4xl p-2 m-auto border border-gray-700/30 shadow-xl/40 shadow-blue-600 
+                bg-white rounded justify-center"
     >
       <h1 className="text-xl font-semibold text-neutral-500/90 mb-4">Registro de usuario</h1>
 
@@ -189,18 +190,21 @@ function NewUser({ switchToLogin }) {
 
           {/* Fecha de nacimiento */}
           <div className="col-span-3">
-            <Textbox type="date" onChange={(e) => setFnacido(e.target.value)} label="Fecha de nacimiento" id="fechaNacimiento"/>
+            <Textbox type="date" onChange={(e) => setFnacido(e.target.value)} 
+              label="Fecha de nacimiento" id="fechaNacimiento"/>
           </div>
 
           {/* Genero */}
           <div className="col-span-2 grid grid-cols-3 gap-2">
             <label className="block text-sm text-gray-700 col-span-3" id="genero">Género</label>
               <div className="flex justify-start px-2 gap-1 ">
-                <Textbox type="radio" value="M" id="genero-M" name="genero" checked={selectedRadio === "M"} onChange={handleChangeRadio} />
+                <Textbox type="radio" value="M" id="genero-M" name="genero" 
+                  checked={selectedRadio === "M"} onChange={handleChangeRadio} />
                 <span>M</span>
               </div>
               <div className="flex justify-end px-2 gap-1">
-                <Textbox type="radio" value="F" id="genero-F" name="genero" checked={selectedRadio === "F"} onChange={handleChangeRadio} />
+                <Textbox type="radio" value="F" id="genero-F" name="genero" 
+                  checked={selectedRadio === "F"} onChange={handleChangeRadio} />
                 <span>F</span>
               </div>
           </div>

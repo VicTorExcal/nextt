@@ -4,7 +4,8 @@ const db = require('../db/db');
 exports.login = async (req, res) => {
     const { username, password } = req.body;
     try {
-        const [rows] = await db.query(`SELECT * FROM USUARIOS WHERE correo_usuario = ? OR telefono_usuario = ?`, [username, username])
+        const [rows] = await db.query(`SELECT * FROM USUARIOS WHERE correo_usuario = ? OR telefono_usuario = ?`, 
+            [username, username])
 
         if (rows.length === 0) {
             // Usuario no encontrado
@@ -12,7 +13,7 @@ exports.login = async (req, res) => {
         }
 
         const user = rows[0];
-        const passwordMatch = await bcrypt.compare(password, user.contrasena_usuario) // comparacion de contraseña con bcrypt
+        const passwordMatch = await bcrypt.compare(password, user.contrasena_usuario) // validar de contraseña con bcrypt
         
         // Validacion de contraseña
         if (password == user.contrasena_usuario) {
