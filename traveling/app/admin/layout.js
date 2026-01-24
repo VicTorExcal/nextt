@@ -1,8 +1,9 @@
 "use client";
 import { useContext } from "react";
+import Link from "next/link";
 import { AuthContext } from '../../context/authContext'
 
-export default function adminLayout({children}){
+export default function AdminLayout({children}){
     const { user, logout } = useContext(AuthContext);
     return(
         <>
@@ -52,15 +53,21 @@ export default function adminLayout({children}){
                                     <div className="overflow-hidden transition-all duration-300 h-md ">
                                         <ul className='mt-2 space-y-1 ml-9'>
                                             <li>
-                                                <a href='/'>
-                                                    Comercio Electronico
-                                                </a>
+                                                <Link href='/admin/usuarios'>
+                                                    Usuarios
+                                                </Link>
                                             </li>
                                             <li>
-                                                <a href='/'>
-                                                    Comercio Electronico
-                                                </a>
+                                                <Link href='/admin/productos'>
+                                                    Productos
+                                                </Link>
                                             </li>
+                                            <li>
+                                                <Link href='/admin/categorias'>
+                                                    Categorias
+                                                </Link>
+                                            </li>
+                                            
                                         </ul>
                                     </div>
                                 </li>
@@ -81,9 +88,9 @@ export default function adminLayout({children}){
                     <div className="bg-amber-400" id="subNav">
                         <span>Direccionamiento</span>
                     </div>
-                    <div className="relative">
+                    <main className="relative">
                         {children}
-                    </div>
+                    </main>
                 </div>
             </div>
         </>

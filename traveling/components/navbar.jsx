@@ -109,7 +109,7 @@ function Navbar() {
 
             {/* BUSCADOR */}
             <div className="bg-white flex flex-col sm:flex-row sm:px-2 sm:py-1">
-              <Search />
+              <Search tableName="productos" role={user?.rol_usuario}/>
             </div>
 
             {/* MENÚ MÓVIL */}

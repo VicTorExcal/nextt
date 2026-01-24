@@ -23,7 +23,7 @@ function NewUser({ switchToLogin }) {
   const [imageUrl, setImageUrl] = useState("");
 
   // Datos del formulario
-  const [id, setId] = useState("");
+  const [id, setId] = useState();
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [fnacido, setFnacido] = useState("");
@@ -76,6 +76,7 @@ function NewUser({ switchToLogin }) {
     const hexColor = Math.floor(Math.random() * 16777215)
       .toString(16)
       .padStart(6, "0");
+    console.log(initials+"-"+hexColor)
     return `${initials} ${hexColor}`;
   };
 
@@ -97,7 +98,7 @@ function NewUser({ switchToLogin }) {
     }
 
     const avatarValue = await avatarUploading();
-
+    console.log("Avatar:: ", avatarValue)
     if (!avatarValue) return;
 
     const datos = {
@@ -117,13 +118,13 @@ function NewUser({ switchToLogin }) {
     };
 
     try {
-      const { info, error: reqError } = await apiRequest(`/api/${tableName}/${id}`, {
+      const { info, error: reqError } = await apiRequest(`/api/c/${tableName}/${id}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
 
       if (reqError) {
-        setError(reqError);
+        setError("Error al consultar", reqError);
         setLoading(false);
         return;
       }
@@ -141,7 +142,7 @@ function NewUser({ switchToLogin }) {
       });
 
       if (requestError) {
-        setError(requestError);
+        setError("Error al realizar el registro", requestError);
       } else {
         console.log("Registro exitoso:", data);
         //window.location.reload("/");

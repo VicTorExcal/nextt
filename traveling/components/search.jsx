@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { apiRequest } from "../utils/fetch";
 import { IoIosSearch } from "react-icons/io";
 
-export default function SearchAPI() {
+export default function SearchAPI({tableName, role}) {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -12,54 +12,56 @@ export default function SearchAPI() {
   const [hasSearched, setHasSearched] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
 
-  const tableName = "productos";
   const router = useRouter();
 
   useEffect(() => {
-    if (!query.trim()) {
-      setSuggestions([]);
-      setHasSearched(false);
-      return;
-    }
-
-    const debounceTimeout = setTimeout(async () => {
-      setLoading(true);
-      setError("");
-      setIsEmpty(false);
-
-      try {
-        const { data, error: reqError } = await apiRequest(`/api/${tableName}`, {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        });
-
-        if (reqError) {
-          setError(reqError);
-          return;
-        }
-
-        const filtered = data.filter((producto) =>
-          producto.nombre_producto.toLowerCase().includes(query.toLowerCase())
-        );
-
-        setSuggestions(filtered);
-      } catch (err) {
-        console.error(err);
-        setError("Error inesperado al buscar.");
-      } finally {
-        setHasSearched(true);
-        setLoading(false);
+    if(role === "cliente"){
+      if (!query.trim()) {
+        setSuggestions([]);
+        setHasSearched(false);
+        return;
       }
-    }, 300);
-
-    return () => clearTimeout(debounceTimeout);
+      const debounceTimeout = setTimeout(async () => {
+        setLoading(true);
+        setError("");
+        setIsEmpty(false);
+  
+        try {
+          const { data, error: reqError } = await apiRequest(`/api/${tableName}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+          });
+  
+          if (reqError) {
+            setError(reqError);
+            return;
+          }
+  
+          const filtered = data.filter((item) =>
+            item.nombre_producto.toLowerCase().includes(query.toLowerCase())
+          );
+  
+          setSuggestions(filtered);
+        } catch (err) {
+          console.error(err);
+          setError("Error inesperado al buscar.");
+        } finally {
+          setHasSearched(true);
+          setLoading(false);
+        }
+      }, 300);
+  
+      return () => clearTimeout(debounceTimeout);
+    }
   }, [query]);
 
-  const handleSelect = (name) => {
-    setQuery("");
-    setSuggestions([]);
-    // Redirige usando query params válidos para Next 13
-    router.push(`/client/${tableName}/resultSearch?nombre=${encodeURIComponent(name)}`);
+  const handleSelect = (query) => {
+      setQuery("");
+      setSuggestions([]);
+    if(role === "cliente"){
+      // Redirige usando query params válidos para Next 13
+      router.push(`/client/${tableName}/resultSearch?nombre=${encodeURIComponent(query)}`);
+    }
   };
 
   const handleSubmit = (e) => {

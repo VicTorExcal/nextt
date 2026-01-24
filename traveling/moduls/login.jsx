@@ -65,11 +65,11 @@ const Login = ({ switchToSignUp }) => {
             navigateTo("./admin");
           } else if (rol === "cliente" && estado === "activo") {  
             handleLoginSuccess(data.user);
-            navigateTo("/cliente");
+            navigateTo("/client");
           }
           else {
             alert("Lo sentimos. El usuario se encuentra bloqueado. Consulte con su administrador")
-            navigateTo("/cliente");
+            navigateTo("/client");
           }
         }
       }
