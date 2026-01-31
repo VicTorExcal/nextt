@@ -6,12 +6,23 @@ export default function Pagination({ page, totalPages }) {
     const router = useRouter();
     const searchParams = useSearchParams();
 
+    // Captura el search actual o vacío
     const search = searchParams.get("search") || "";
 
     const goToPage = (p) => {
-        router.push(`?page=${p}&search=${search}`);
+        if (p < 1 || p > totalPages) return;
+        router.push(`?page=${p}&search=${encodeURIComponent(search)}`);
     };
-     if (totalPages > 1) return null;
+
+    // Si solo hay 1 página, no mostrar paginación
+    if (totalPages <= 1) return null;
+
+    // Rango de páginas a mostrar: 5 botones máximo alrededor de la actual
+    const start = Math.max(1, page - 2);
+    const end = Math.min(totalPages, page + 2);
+    const pageNumbers = [];
+    for (let i = start; i <= end; i++) pageNumbers.push(i);
+
     return (
         <div className="flex items-center justify-between px-4 py-2">
             <span className="text-sm text-gray-600">
@@ -27,21 +38,17 @@ export default function Pagination({ page, totalPages }) {
                     Anterior
                 </button>
 
-                {Array.from({ length: totalPages }, (_, i) => i + 1)
-                    .slice(Math.max(0, page - 3), page + 2)
-                    .map((p) => (
-                        <button
-                            key={p}
-                            onClick={() => goToPage(p)}
-                            className={`px-3 py-1 border rounded ${
-                                p === page
-                                    ? "bg-blue-600 text-white"
-                                    : "hover:bg-gray-100"
-                            }`}
-                        >
-                            {p}
-                        </button>
-                    ))}
+                {pageNumbers.map((p) => (
+                    <button
+                        key={p}
+                        onClick={() => goToPage(p)}
+                        className={`px-3 py-1 border rounded ${
+                            p === page ? "bg-blue-600 text-white" : "hover:bg-gray-100"
+                        }`}
+                    >
+                        {p}
+                    </button>
+                ))}
 
                 <button
                     onClick={() => goToPage(page + 1)}

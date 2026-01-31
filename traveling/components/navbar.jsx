@@ -9,6 +9,7 @@ import Login from "../moduls/login";
 import NewUser from "../moduls/newuser";
 import DropdownButton from "./dropdownButton";
 import ShoppingCart from "./shoppingCar";
+import Avatar from "./avatar";
 import { PiShoppingCartLight } from "react-icons/pi";
 
 function Navbar() {
@@ -18,7 +19,7 @@ function Navbar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("login");
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [avatarUrl, setAvatarUrl] = useState();
+  
   const [openDropdown, setOpenDropdown] = useState(false);
   const toggleDropdown = () => setOpenDropdown((v) => !v);
   const closeDropdown = () => setOpenDropdown(false);
@@ -42,34 +43,6 @@ function Navbar() {
       openLogin(e);
     }
   };
-
-  // GENERAR AVATAR
-  const generateAvatar = useCallback(async () => {
-    if (!user || !user.avatar_usuario) return;
-
-    setIsLoading(true);
-
-    try {
-      const splitAvatar = user.avatar_usuario.split(" ");
-
-      if (splitAvatar.length > 1) {
-        const InitialName = splitAvatar[0];
-        const Background = splitAvatar[1];
-        const url = `https://ui-avatars.com/api/?name=${InitialName}&background=${Background}`;
-        setAvatarUrl(url);
-      } else {
-        setAvatarUrl(user.avatar_usuario);
-      }
-    } catch (err) {
-      console.error("Error inesperado:", err);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [user]);
-
-  useEffect(() => {
-    generateAvatar();
-  }, [generateAvatar]);
 
   const toggleCart = () => {
     if (user) setIsCartOpen((prev) => !prev);
@@ -109,7 +82,7 @@ function Navbar() {
 
             {/* BUSCADOR */}
             <div className="bg-white flex flex-col sm:flex-row sm:px-2 sm:py-1">
-              <Search tableName="productos" role={user?.rol_usuario}/>
+              <Search tableName="productos" role={user ? user.rol_usuario : "cliente"}/>
             </div>
 
             {/* MENÚ MÓVIL */}
@@ -151,16 +124,8 @@ function Navbar() {
                 </div>
 
                 {/* AVATAR */}
-                <img
-                  src={avatarUrl || "/avatarDefault.png"}
-                  className={`
-                    w-12 h-12 p-1 rounded-full opacity-70 bg-gray-400 md:w-12 md:h-12
-                    hover:cursor-pointer
-                    ${user && 'hover:bg-white hover:border hover:border-gray-400'} 
-                  `}
-                  onClick={handleAvatarClick}
-                />
-
+                <Avatar user={user} onClick={handleAvatarClick} />
+                
                 {/* Datos del usuario */}
                 <div className="px-4 text-gray-400 md:hidden">
                   {user ? (

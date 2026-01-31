@@ -27,7 +27,6 @@ const genericRoutes = require('./routes/genericRoutes');
 const authRoutes = require('./routes/authRoutes');
 
 // Rutas
-app.use("/api/crud", genericRoutes);
 app.use('/api', genericRoutes);
 app.use('/auth', authRoutes);
 
